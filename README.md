@@ -102,3 +102,26 @@ There is no value `radius` on that object, which returns `undefined`.
 
 </p>
 </details>
+
+###### 4. What's the output?
+
+```javascript
++true;
+!"Lydia";
+```
+
+- A: `1` and `false`
+- B: `false` and `NaN`
+- C: `false` and `false`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
+
+The unary plus tries to convert an operand to a number. `true` is `1`, and `false` is `0`.
+
+The string `'Lydia'` is a truthy value. What we're actually asking, is "is this truthy value falsy?". This returns `false`.
+
+</p>
+</details>
