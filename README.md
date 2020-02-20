@@ -7,8 +7,7 @@
 From basic to advanced: test your understanding of JavaScript, update your knowledge, or prepare for your coding interview! Just for fun, good luck!
 Please feel free to lend me a hand!</span>
 
-  Feel free to reach out to me! 😊 <br />
-  <a href="https://www.instagram.com/theavocoder">Instagram</a> || <a href="https://www.twitter.com/lydiahallie">Twitter</a> || <a href="https://www.linkedin.com/in/lydia-hallie">LinkedIn</a> || <a href="https://www.lydiahallie.dev">Blog</a>
+  Feel free to reach out to me! 😊 
   </div>
 ---
 
