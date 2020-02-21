@@ -394,3 +394,24 @@ We said that `this.firstName` equals `"Sarah"` and `this.lastName` equals `"Smit
 </p>
 </details>
 
+---
+
+###### 13. What are the three phases of event propagation?
+
+- A: Target > Capturing > Bubbling
+- B: Bubbling > Target > Capturing
+- C: Target > Bubbling > Capturing
+- D: Capturing > Target > Bubbling
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: D
+
+During the **capturing** phase, the event goes through the ancestor elements down to the target element. It then reaches the **target** element, and **bubbling** begins.
+
+<img src="https://i.imgur.com/N18oRgd.png" width="200">
+
+</p>
+</details>
+
