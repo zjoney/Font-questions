@@ -431,3 +431,135 @@ All objects have prototypes, except for the **base object**. The base object is 
 </p>
 </details>
 
+---
+
+###### 15. What's the output?
+
+```javascript
+function sum(a, b) {
+  return a + b;
+}
+
+sum(1, "2");
+```
+
+- A: `NaN`
+- B: `TypeError`
+- C: `"12"`
+- D: `3`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: C
+
+JavaScript is a **dynamically typed language**: we don't specify what types certain variables are. Values can automatically be converted into another type without you knowing, which is called _implicit type coercion_. **Coercion** is converting from one type into another.
+
+In this example, JavaScript converts the number `1` into a string, in order for the function to make sense and return a value. During the addition of a numeric type (`1`) and a string type (`'2'`), the number is treated as a string. We can concatenate strings like `"Hello" + "World"`, so what's happening here is `"1" + "2"` which returns `"12"`.
+
+</p>
+</details>
+---
+
+###### 16. What's the output?
+
+```javascript
+let number = 0;
+console.log(number++);
+console.log(++number);
+console.log(number);
+```
+
+- A: `1` `1` `2`
+- B: `1` `2` `2`
+- C: `0` `2` `2`
+- D: `0` `1` `2`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: C
+
+The **postfix** unary operator `++`:
+
+1. Returns the value (this returns `0`)
+2. Increments the value (number is now `1`)
+
+The **prefix** unary operator `++`:
+
+1. Increments the value (number is now `2`)
+2. Returns the value (this returns `2`)
+
+This returns `0 2 2`.
+
+</p>
+</details>
+
+---
+
+###### 17. What's the output?
+
+```javascript
+function getPersonInfo(one, two, three) {
+  console.log(one);
+  console.log(two);
+  console.log(three);
+}
+
+const person = "Lydia";
+const age = 21;
+
+getPersonInfo`${person} is ${age} years old`;
+```
+
+- A: `"Lydia"` `21` `["", " is ", " years old"]`
+- B: `["", " is ", " years old"]` `"Lydia"` `21`
+- C: `"Lydia"` `["", " is ", " years old"]` `21`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: B
+
+If you use tagged template literals, the value of the first argument is always an array of the string values. The remaining arguments get the values of the passed expressions!
+
+</p>
+</details>
+
+---
+
+###### 18. What's the output?
+
+```javascript
+function checkAge(data) {
+  if (data === { age: 18 }) {
+    console.log("You are an adult!");
+  } else if (data == { age: 18 }) {
+    console.log("You are still an adult.");
+  } else {
+    console.log(`Hmm.. You don't have an age I guess`);
+  }
+}
+
+checkAge({ age: 18 });
+```
+
+- A: `You are an adult!`
+- B: `You are still an adult.`
+- C: `Hmm.. You don't have an age I guess`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: C
+
+When testing equality, primitives are compared by their _value_, while objects are compared by their _reference_. JavaScript checks if the objects have a reference to the same location in memory.
+
+The two objects that we are comparing don't have that: the object we passed as a parameter refers to a different location in memory than the object we used in order to check equality.
+
+This is why both `{ age: 18 } === { age: 18 }` and `{ age: 18 } == { age: 18 }` return `false`.
+
+</p>
+</details>
+
+
