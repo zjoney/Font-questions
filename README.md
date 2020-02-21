@@ -291,3 +291,106 @@ In order to avoid this, we can use `"use strict"`. This makes sure that you have
 </p>
 </details>
 
+---
+
+###### 10. What happens when we do this?
+
+```javascript
+function bark() {
+  console.log("Woof!");
+}
+
+bark.animal = "dog";
+```
+
+- A: Nothing, this is totally fine!
+- B: `SyntaxError`. You cannot add properties to a function this way.
+- C: `"Woof"` gets logged.
+- D: `ReferenceError`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
+
+This is possible in JavaScript, because functions are objects! (Everything besides primitive types are objects)
+
+A function is a special type of object. The code you write yourself isn't the actual function. The function is an object with properties. This property is invocable.
+
+</p>
+</details>
+---
+
+###### 11. What's the output?
+
+```javascript
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+const member = new Person("Lydia", "Hallie");
+Person.getFullName = function() {
+  return `${this.firstName} ${this.lastName}`;
+};
+
+console.log(member.getFullName());
+```
+
+- A: `TypeError`
+- B: `SyntaxError`
+- C: `Lydia Hallie`
+- D: `undefined` `undefined`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
+
+You can't add properties to a constructor like you can with regular objects. If you want to add a feature to all objects at once, you have to use the prototype instead. So in this case,
+
+```js
+Person.prototype.getFullName = function() {
+  return `${this.firstName} ${this.lastName}`;
+};
+```
+
+would have made `member.getFullName()` work. Why is this beneficial? Say that we added this method to the constructor itself. Maybe not every `Person` instance needed this method. This would waste a lot of memory space, since they would still have that property, which takes of memory space for each instance. Instead, if we only add it to the prototype, we just have it at one spot in memory, yet they all have access to it!
+
+</p>
+</details>
+
+---
+
+###### 12. What's the output?
+
+```javascript
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+const lydia = new Person("Lydia", "Hallie");
+const sarah = Person("Sarah", "Smith");
+
+console.log(lydia);
+console.log(sarah);
+```
+
+- A: `Person {firstName: "Lydia", lastName: "Hallie"}` and `undefined`
+- B: `Person {firstName: "Lydia", lastName: "Hallie"}` and `Person {firstName: "Sarah", lastName: "Smith"}`
+- C: `Person {firstName: "Lydia", lastName: "Hallie"}` and `{}`
+- D:`Person {firstName: "Lydia", lastName: "Hallie"}` and `ReferenceError`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
+
+For `sarah`, we didn't use the `new` keyword. When using `new`, it refers to the new empty object we create. However, if you don't add `new` it refers to the **global object**!
+
+We said that `this.firstName` equals `"Sarah"` and `this.lastName` equals `"Smith"`. What we actually did, is defining `global.firstName = 'Sarah'` and `global.lastName = 'Smith'`. `sarah` itself is left `undefined`, since we don't return a value from the `Person` function.
+
+</p>
+</details>
+
