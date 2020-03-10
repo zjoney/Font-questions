@@ -662,29 +662,21 @@ var bar = new foo();
 
 ---
 
-###### 20. What's the output?
+###### 20. 如果我们使用JavaScript的"关联数组"，我们怎么计算"关联数组"的长度？
 
 ```javascript
-function getAge() {
-  "use strict";
-  age = 21;
-  console.log(age);
-}
-
-getAge();
+var counterArray = {
+    A : 3,
+    B : 4
+};
+counterArray["C"] = 1;
 ```
 
-- A: `21`
-- B: `undefined`
-- C: `ReferenceError`
-- D: `TypeError`
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: C
-
-With `"use strict"`, you can make sure that you don't accidentally declare global variables. We never declared the variable `age`, and since we use `"use strict"`, it will throw a reference error. If we didn't use `"use strict"`, it would have worked, since the property `age` would have gotten added to the global object.
+`Object.keys(counterArray).length // Output 3`
 
 </p>
 </details>
