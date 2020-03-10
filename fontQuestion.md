@@ -411,17 +411,37 @@ console.log(trees.length);
 
 ---
 
-###### 14. All object have prototypes.
+###### 14. what's the output?
 
-- A: true
-- B: false
+```javascript
+var bar = true;
+console.log(bar + 0);
+console.log(bar + "xyz");
+console.log(bar + true);
+console.log(bar + false);
+```
 
 <details><summary><b>Answer</b></summary>
 <p>
+```javascript
+1
+truexyz
+2
+1
+```
+下面给出一个加法操作表
 
-#### Answer: B
+Number + Number -> 加法
 
-All objects have prototypes, except for the **base object**. The base object is the object created by the user, or an object that is created using the `new` keyword. The base object has access to some methods and properties, such as `.toString`. This is the reason why you can use built-in JavaScript methods! All of such methods are available on the prototype. Although JavaScript can't find it directly on your object, it goes down the prototype chain and finds it there, which makes it accessible for you.
+Boolean + Number -> 加法
+
+Boolean + Boolean -> 加法
+
+Number + String -> 连接
+
+String + Boolean -> 连接
+
+String + String -> 连接
 
 </p>
 </details>
