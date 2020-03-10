@@ -478,40 +478,43 @@ console.log(y);
 ###### 16. What's the output?
 
 ```javascript
-let number = 0;
-console.log(number++);
-console.log(++number);
-console.log(number);
+var foo = function bar(){ return 12; };
+typeof bar();
 ```
-
-- A: `1` `1` `2`
-- B: `1` `2` `2`
-- C: `0` `2` `2`
-- D: `0` `1` `2`
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: C
+#### Answer: 输出是抛出异常，bar is not defined
 
-The **postfix** unary operator `++`:
+需要这样修改代码：
 
-1. Returns the value (this returns `0`)
-2. Increments the value (number is now `1`)
+```javascript
+var bar = function(){ return 12; };
+typeof bar();
+```
+或者是
 
-The **prefix** unary operator `++`:
-
-1. Increments the value (number is now `2`)
-2. Returns the value (this returns `2`)
-
-This returns `0 2 2`.
-
+```javascript
+function bar(){ return 12; };
+typeof bar();
+```
+明确说明这个下问题
+```javascript
+var foo = function bar(){
+    // foo is visible here
+    // bar is visible here
+    console.log(typeof bar()); // Work here :)
+};
+// foo is visible here
+// bar is undefined here
+```
 </p>
 </details>
 
 ---
 
-###### 17. What's the output?
+###### 17. 两种函数声明有什么区别？
 
 ```javascript
 function getPersonInfo(one, two, three) {
