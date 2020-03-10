@@ -41,7 +41,7 @@ console.log(y);
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: `undefined`
+#### Answer: `1undefined`
 
 In JavaScript, if statement evaluation actually uses Eval function, and `eval (function f() {})` returns `function f() {}` which is true.
 Now we can transform the code into its equivalent code.
@@ -121,25 +121,53 @@ var emp3 = new Employee("Ren","Pluto",2500);
 
 ---
 
-###### 4. What's the output?
-
-```javascript
-+true;
-!"Lydia";
-```
-
-- A: `1` and `false`
-- B: `false` and `NaN`
-- C: `false` and `false`
+###### 4. JavaScript中什么是闭包？写出一个例子
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: A
+老生常谈的问题了，闭包是在一个函数里声明了另外一个函数，并且这个函数访问了父函数作用域里的变量。
 
-The unary plus tries to convert an operand to a number. `true` is `1`, and `false` is `0`.
+下面给出一个闭包例子，它访问了三个域的变量
 
-The string `'Lydia'` is a truthy value. What we're actually asking, is "is this truthy value falsy?". This returns `false`.
+它自己作用域的变量
+
+父函数作用域的变量
+
+全局作用域的变量
+```javascript
+var globalVar = "abc";
+
+// Parent self invoking function
+(function outerFunction (outerArg) { // begin of scope outerFunction
+    // Variable declared in outerFunction function scope
+    var outerFuncVar = 'x';
+    // Closure self-invoking function
+    (function innerFunction (innerArg) { // begin of scope innerFunction
+        // variable declared in innerFunction function scope
+        var innerFuncVar = "y";
+        console.log(
+            "outerArg = " + outerArg + "\n" +
+            "outerFuncVar = " + outerFuncVar + "\n" +
+            "innerArg = " + innerArg + "\n" +
+            "innerFuncVar = " + innerFuncVar + "\n" +
+            "globalVar = " + globalVar);
+ 
+    }// end of scope innerFunction)(5); // Pass 5 as parameter
+}// end of scope outerFunction )(7); // Pass 7 as parameter
+innerFunction is closure that is defined inside outerFunc
+```
+
+输出很简单：
+
+```javascript
+outerArg = 7
+outerFuncVar = x
+innerArg = 5
+innerFuncVar = y
+globalVar = abc
+```
+
 
 </p>
 </details>
