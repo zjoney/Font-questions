@@ -303,23 +303,21 @@ delete 操作符是将object的属性删去的操作。但是这里的 x 是并�
 ###### 9. What's the output?
 
 ```javascript
-let greeting;
-greetign = {}; // Typo!
-console.log(greetign);
-```
+var x = 1;
+var output = (function(){
+    delete x;
+    return x;
+})();
 
-- A: `{}`
-- B: `ReferenceError: greetign is not defined`
-- C: `undefined`
+console.log(output);
+```
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: A
+#### Answer: 1
 
-It logs the object, because we just created an empty object on the global object! When we mistyped `greeting` as `greetign`, the JS interpreter actually saw this as `global.greetign = {}` (or `window.greetign = {}` in a browser).
-
-In order to avoid this, we can use `"use strict"`. This makes sure that you have declared a variable before setting it equal to anything.
+delete 操作符是将object的属性删去的操作。但是这里的 x 是并不是对象的属性， delete 操作符并不能作用。
 
 </p>
 </details>
