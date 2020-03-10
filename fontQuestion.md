@@ -12,7 +12,7 @@
 <details><summary><b>Answer</b></summary>
 <p>
 
-If JavaScript does not declare variables to be used directly, an exception will be thrown: <code>Var name is not defined</code>. If the exception is not handled, the code will stop running. However, the use of <code>typeof undeclared_variable</code> does not cause an exception, and it will directly return undefined.
+If JavaScript does not declare variables to be used directly, an exception will be thrown: `var name is not defined`. If the exception is not handled, the code will stop running. However, the use of `typeof undeclared_variable` does not cause an exception, and it will directly return undefined.
 ```javascript
 var x; // 声明 x
 console.log(x); //output: undefined
@@ -30,27 +30,47 @@ console.log(z);  // 抛出异常: ReferenceError: z is not defined
 ###### 2. What's the output?
 
 ```javascript
-for (var i = 0; i < 3; i++) {
-  setTimeout(() => console.log(i), 1);
+var y = 1;
+if (function f(){}) {
+    y += typeof f;
 }
-
-for (let i = 0; i < 3; i++) {
-  setTimeout(() => console.log(i), 1);
-}
+console.log(y);
 ```
 
-- A: `0 1 2` and `0 1 2`
-- B: `0 1 2` and `3 3 3`
-- C: `3 3 3` and `0 1 2`
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: C
+#### Answer: `undefined`
 
-Because of the event queue in JavaScript, the `setTimeout` callback function is called _after_ the loop has been executed. Since the variable `i` in the first loop was declared using the `var` keyword, this value was global. During the loop, we incremented the value of `i` by `1` each time, using the unary operator `++`. By the time the `setTimeout` callback function was invoked, `i` was equal to `3` in the first example.
+In JavaScript, if statement evaluation actually uses Eval function, and `eval (function f() {})` returns `function f() {}` which is true.
+Now we can transform the code into its equivalent code.
 
-In the second loop, the variable `i` was declared using the `let` keyword: variables declared with the `let` (and `const`) keyword are block-scoped (a block is anything between `{ }`). During each iteration, `i` will have a new value, and each value is scoped inside the loop.
+```javascript
+var k = 1;
+if (1) {
+    eval(function foo(){});
+    k += typeof foo;
+}
+console.log(k);
+```
+
+The above code output is actually `1 undefined`. Why that? Let's look at the `eval ()` documentation to get the answer
+
+- This method only accepts the original string as a parameter. If the string parameter is not the original string, the method will return without any change.
+
+The return value of `function f() {}` statement is `undefined`, so everything makes sense.
+Note that the code above is different from the code below.
+
+```javascript
+var k = 1;
+if (1) {
+    function foo(){};
+    k += typeof foo;
+}
+console.log(k); // output 1function
+```
+
 
 </p>
 </details>
