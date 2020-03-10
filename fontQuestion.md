@@ -211,35 +211,27 @@ function mul (x) {
 ---
 
 
-###### 6. What's the output?
+###### 6. JavaScript怎么清空数组？
 
 ```javascript
-let c = { greeting: "Hey!" };
-let d;
-
-d = c;
-c.greeting = "Hello";
-console.log(d.greeting);
+var arrayList =  ['a','b','c','d','e','f'];
 ```
-
-- A: `Hello`
-- B: `Hey!`
-- C: `undefined`
-- D: `ReferenceError`
-- E: `TypeError`
+怎么清空 arrayList
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: A
+##### 方法1
+`arrayList = [];`
+直接改变arrayList所指向的对象，原对象并不改变。
 
-In JavaScript, all objects interact by _reference_ when setting them equal to each other.
+##### 方法2
+`arrayList.length = 0;`
+这种方法通过设置length=0 使原数组清除元素。
 
-First, variable `c` holds a value to an object. Later, we assign `d` with the same reference that `c` has to the object.
-
-<img src="https://i.imgur.com/ko5k0fs.png" width="200">
-
-When you change one object, you change all of them.
+##### 方法3
+`arrayList.splice(0, arrayList.length);`
+和方法2相似
 
 </p>
 </details>
