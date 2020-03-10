@@ -390,21 +390,21 @@ console.log(trees);
 
 ---
 
-###### 13. What are the three phases of event propagation?
+###### 13. What's the output?
 
-- A: Target > Capturing > Bubbling
-- B: Bubbling > Target > Capturing
-- C: Target > Bubbling > Capturing
-- D: Capturing > Target > Bubbling
+```javascript
+var trees = ["xyz","xxxx","test","ryan","apple"];
+delete trees[3];
+  
+console.log(trees.length);
+```
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: D
+#### Answer: 5
 
-During the **capturing** phase, the event goes through the ancestor elements down to the target element. It then reaches the **target** element, and **bubbling** begins.
-
-<img src="https://i.imgur.com/N18oRgd.png" width="200">
+因为delete操作符并不是影响数组的长度。
 
 </p>
 </details>
