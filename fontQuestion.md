@@ -581,33 +581,36 @@ foo = function(){
 ###### 18. What's the output?
 
 ```javascript
-function checkAge(data) {
-  if (data === { age: 18 }) {
-    console.log("You are an adult!");
-  } else if (data == { age: 18 }) {
-    console.log("You are still an adult.");
-  } else {
-    console.log(`Hmm.. You don't have an age I guess`);
-  }
-}
+var salary = "1000$";
 
-checkAge({ age: 18 });
+(function () {
+    console.log("Original salary was " + salary);
+
+    var salary = "5000$";
+
+    console.log("My New Salary " + salary);
+})();
 ```
-
-- A: `You are an adult!`
-- B: `You are still an adult.`
-- C: `Hmm.. You don't have an age I guess`
 
 <details><summary><b>Answer</b></summary>
 <p>
+```javascript
+Original salary was undefined
+My New Salary 5000$
+```
+这题同样考察的是变量提升。等价于以下代码
+```javascript
+var salary = "1000$";
 
-#### Answer: C
+ (function () {
+     var salary ;
+     console.log("Original salary was " + salary);
 
-When testing equality, primitives are compared by their _value_, while objects are compared by their _reference_. JavaScript checks if the objects have a reference to the same location in memory.
+     salary = "5000$";
 
-The two objects that we are comparing don't have that: the object we passed as a parameter refers to a different location in memory than the object we used in order to check equality.
-
-This is why both `{ age: 18 } === { age: 18 }` and `{ age: 18 } == { age: 18 }` return `false`.
+     console.log("My New Salary " + salary);
+ })();
+ ```
 
 </p>
 </details>
