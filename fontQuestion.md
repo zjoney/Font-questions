@@ -371,34 +371,19 @@ console.log(emp1.company);
 
 ---
 
-###### 12. What's the output?
-
-```javascript
-function Person(firstName, lastName) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-}
-
-const lydia = new Person("Lydia", "Hallie");
-const sarah = Person("Sarah", "Smith");
-
-console.log(lydia);
-console.log(sarah);
-```
-
-- A: `Person {firstName: "Lydia", lastName: "Hallie"}` and `undefined`
-- B: `Person {firstName: "Lydia", lastName: "Hallie"}` and `Person {firstName: "Sarah", lastName: "Smith"}`
-- C: `Person {firstName: "Lydia", lastName: "Hallie"}` and `{}`
-- D:`Person {firstName: "Lydia", lastName: "Hallie"}` and `ReferenceError`
+###### 12. 什么是 undefined x 1 ？
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: A
+在chrome下执行如下代码，我们就可以看到undefined x 1的身影。
 
-For `sarah`, we didn't use the `new` keyword. When using `new`, it refers to the new empty object we create. However, if you don't add `new` it refers to the **global object**!
-
-We said that `this.firstName` equals `"Sarah"` and `this.lastName` equals `"Smith"`. What we actually did, is defining `global.firstName = 'Sarah'` and `global.lastName = 'Smith'`. `sarah` itself is left `undefined`, since we don't return a value from the `Person` function.
+```javascript
+var trees = ["redwood","bay","cedar","oak","maple"];
+delete trees[3];
+console.log(trees);
+```
+当我们使用 delete 操作符删除一个数组中的元素，这个元素的位置就会变成一个占位符。打印出来就是undefined x 1。注意如果我们使用trees[3] === 'undefined × 1'返回的是 false。因为它仅仅是一种打印表示，并不是值变为undefined x 1。
 
 </p>
 </details>
