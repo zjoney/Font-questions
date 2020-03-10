@@ -9,26 +9,8 @@
 
 ###### 1. The difference between undefined and not defined in JavaScript
 
-```javascript
-function sayHi() {
-  console.log(name);
-  console.log(age);
-  var name = "Lydia";
-  let age = 21;
-}
-
-sayHi();
-```
-
-- A: `Lydia` and `undefined`
-- B: `Lydia` and `ReferenceError`
-- C: `ReferenceError` and `21`
-- D: `undefined` and `ReferenceError`
-
 <details><summary><b>Answer</b></summary>
 <p>
-
-#### Answer: D
 
 JavaScript 未声明变量直接使用会抛出异常：var name is not defined，如果没有处理异常，代码就停止运行了。但是，使用typeof undeclared_variable并不会产生异常，会直接返回 undefined。
 ```javascript
