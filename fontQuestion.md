@@ -364,7 +364,7 @@ Emp1 here inherits the company of employee through prototype. Emp1 has no compan
 <details><summary><b>Answer</b></summary>
 <p>
 
-在chrome下执行如下代码，我们就可以看到undefined x 1的身影。
+You can see the figure of undefined x 1 by executing the following code in chrome.
 
 ```javascript
 var trees = ["redwood","bay","cedar","oak","maple"];
@@ -372,6 +372,8 @@ delete trees[3];
 console.log(trees);
 ```
 当我们使用 delete 操作符删除一个数组中的元素，这个元素的位置就会变成一个占位符。打印出来就是undefined x 1。注意如果我们使用trees[3] === 'undefined × 1'返回的是 false。因为它仅仅是一种打印表示，并不是值变为undefined x 1。
+
+When we use the `delete` operator to delete an element in an array, the position of the element becomes a placeholder. Printed out is `undefined x 1`. Note that if we use `trees [3] = = 'undefined × 1'`, we return `false`. Because it's just a printed representation, it's not a value that changes to` undefined x 1`.
 
 </p>
 </details>
@@ -392,7 +394,7 @@ console.log(trees.length);
 
 #### Answer: 5
 
-因为delete操作符并不是影响数组的长度。
+Because the delete operator does not affect the length of the array.
 
 </p>
 </details>
@@ -417,8 +419,9 @@ truexyz
 2
 1
 ```
-下面给出一个加法操作表
+Here is an addition operation table
 
+```javascript
 Number + Number -> 加法
 
 Boolean + Number -> 加法
@@ -430,6 +433,7 @@ Number + String -> 连接
 String + Boolean -> 连接
 
 String + String -> 连接
+```
 
 </p>
 </details>
@@ -447,9 +451,8 @@ console.log(y);
 <p>
 
 #### Answer: undefined
-js中赋值操作结合律是右至左的 ，即从最右边开始计算值赋值给左边的变量。
-
-上面代码等价于
+The combination law of assignment operation in JS is right to left, that is, the value is assigned to the variable on the left from the rightmost.
+The above code is equivalent to
 
 ```javascript
 var z = 1
@@ -473,21 +476,21 @@ typeof bar();
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: 输出是抛出异常，bar is not defined
+#### Answer: Output is to throw an exception，bar is not defined
 
-需要这样修改代码：
+The code needs to be modified like this：
 
 ```javascript
 var bar = function(){ return 12; };
 typeof bar();
 ```
-或者是
+Or
 
 ```javascript
 function bar(){ return 12; };
 typeof bar();
 ```
-明确说明这个下问题
+Make it clear
 ```javascript
 var foo = function bar(){
     // foo is visible here
@@ -502,7 +505,7 @@ var foo = function bar(){
 
 ---
 
-###### 17. 两种函数声明有什么区别？
+###### 17. What is the difference between the two function declarations?
 
 ```javascript
 var foo = function(){
@@ -516,9 +519,8 @@ function bar(){
 <details><summary><b>Answer</b></summary>
 <p>
 
-foo的定义是在运行时。想系统说明这个问题，我们要引入变量提升的这一概念。
-
-我们可以运行下如下代码看看结果。
+Foo is defined at run time. To illustrate this problem systematically, we need to introduce the concept of variable promotion.
+We can run the following code to see the result.
 
 ```javascript
 console.log(foo)
@@ -531,7 +533,7 @@ function bar(){
     // Some code
 };
 ```
-输出为
+Output:
 
 ```javascript
 undefined
@@ -539,14 +541,12 @@ function bar(){
     // Some code
 };
 ```
-为什么那？为什么 foo 打印出来是 undefined，而 bar打印出来却是函数？
-
-JavaScript在执行时，会将变量提升。
-
-所以上面代码JavaScript 引擎在实际执行时按这个顺序执行。
+Why? Why is foo printed as undefined and bar printed as a function?
+When JavaScript executes, it promotes variables.
+So the JavaScript engine in the above code executes in this order when actually executing.
 ```javascript
 
-// foo bar的定义位置被提升
+// The defined position of foo bar is raised
 function bar(){
     // Some code
 };
@@ -560,7 +560,7 @@ foo = function(){
 };
 ```
 
-原代码的输出合理解释了。
+The output of the original code is reasonable.
 </p>
 </details>
 
@@ -586,7 +586,7 @@ var salary = "1000$";
 Original salary was undefined
 My New Salary 5000$
 ```
-这题同样考察的是变量提升。等价于以下代码
+This question also examines variable promotion. Equivalent to the following code
 ```javascript
 var salary = "1000$";
 
@@ -605,7 +605,7 @@ var salary = "1000$";
 
 ---
 
-###### 19. 什么是 instanceof 操作符？下面代码输出什么？
+###### 19. What is the instanceof operator? What does the following code output?
 
 ```javascript
 function foo(){
@@ -617,40 +617,39 @@ console.log(new foo() instanceof foo);
 
 <details><summary><b>Answer</b></summary>
 <p>
-instanceof操作符用来判断是否当前对象是特定类的对象。
-
-如
+The instanceof operator is used to determine whether the current object is an object of a specific class.
+as
 
 ```javascript
 function Animal(){
-    //或者不写return语句
+    //Or do not write the return statement
     return this;
 }
 var dog = new Animal();
 dog instanceof Animal // Output : true
 ```
-但是，这里的foo定义为
+However, foo here is defined as
 ```javascript
 
 function foo(){
   return foo;
 }
 ```
-所以
+so
 ```javascript
 
 // here bar is pointer to function foo(){return foo}.
 var bar = new foo();
 ```
 
-所以 new foo() instanceof foo 返回 false
+调用foo的new foo（）instanceof foo返回 false
 
 </p>
 </details>
 
 ---
 
-###### 20. 如果我们使用JavaScript的"关联数组"，我们怎么计算"关联数组"的长度？
+###### 20. If we use JavaScript "associative array", how can we calculate the length of "associative array"?
 
 ```javascript
 var counterArray = {
