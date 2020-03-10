@@ -82,9 +82,8 @@ console.log(k); // output 1function
 <details><summary><b>Answer</b></summary>
 <p>
 
-每一个对象都会创建一个private方法的方法，这样很耗费内存
-
-观察下面代码
+Every object will create a method of private method, which is very memory consuming
+Look at the following code
 
 ```javascript
 var Employee = function (name, company, salary) {
@@ -112,29 +111,24 @@ var emp2 = new Employee("Merry","Pluto",2000);
 var emp3 = new Employee("Ren","Pluto",2500);
 ```
 
-在这里 emp1,emp2,emp3都有一个increaseSalary私有方法的副本。
-
-所以我们除非必要，非常不推荐使用私有方法。
+Here, emp1, emp2, and emp3 all have a copy of the increasesalary private method.
+So we do not recommend using private methods unless necessary.
 
 </p>
 </details>
 
 ---
 
-###### 4. JavaScript中什么是闭包？写出一个例子
+###### 4. What is closure in JavaScript? Write an example
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-老生常谈的问题了，闭包是在一个函数里声明了另外一个函数，并且这个函数访问了父函数作用域里的变量。
-
-下面给出一个闭包例子，它访问了三个域的变量
-
-它自己作用域的变量
-
-父函数作用域的变量
-
-全局作用域的变量
+As the old saying goes, a closure is a function in which another function is declared, and this function accesses variables in the scope of the parent function.
+Here is an example of a closure that accesses variables in three domains
+- Variables in its own scope
+- Variables in the scope of the parent function
+- Global scope variables
 ```javascript
 var globalVar = "abc";
 
@@ -158,7 +152,7 @@ var globalVar = "abc";
 innerFunction is closure that is defined inside outerFunc
 ```
 
-输出很简单：
+Output is simple：
 
 ```javascript
 outerArg = 7
@@ -174,7 +168,7 @@ globalVar = abc
 
 ---
 
-###### 5. 写一个mul函数，使用方法如下
+###### 5. Write a mul function as follows
 
 ```javascript
 console.log(mul(2)(3)(4)); // output : 24
@@ -192,86 +186,80 @@ function mul (x) {
     };
 }
 ```
-简单说明下：mul 返回一个匿名函数，运行这个匿名函数又返回一个匿名函数，最里面的匿名函数可以访问 x,y,z 进而算出乘积返回即可。
+Simple description: mul returns an anonymous function, and runs the anonymous function to return an anonymous function. The inner anonymous function can access x, y, Z and then calculate the product return.
+For functions in JavaScript, the following knowledge points can be inspected:
 
-对于JavaScript中的函数一般可以考察如下知识点：
-
-函数是一等公民
-
-函数可以有属性，并且能连接到它的构造方法
-
-函数可以像一个变量一样存在内存中
-
-函数可以当做参数传给其他函数
-
-函数可以返回其他函数
+- Functions are first class citizens
+- A function can have properties and can be connected to its constructor
+- Functions can exist in memory as a variable
+- Functions can be passed as arguments to other functions
+- Function can return other functions
 </p>
 </details>
 
 ---
 
 
-###### 6. JavaScript怎么清空数组？
+###### 6. How does JavaScript empty arrays?
 
 ```javascript
 var arrayList =  ['a','b','c','d','e','f'];
 ```
-怎么清空 arrayList
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-##### 方法1
+##### Method 1
 `arrayList = [];`
-直接改变arrayList所指向的对象，原对象并不改变。
+Directly change the object that ArrayList points to, and the original object does not change.
 
-##### 方法2
+##### Method 2
 `arrayList.length = 0;`
-这种方法通过设置length=0 使原数组清除元素。
+This method clears the elements of the original array by setting length = 0.
 
-##### 方法3
+##### Method 3
 `arrayList.splice(0, arrayList.length);`
-和方法2相似
+Similar to method 2
 
 </p>
 </details>
 
 ---
 
-###### 7. 怎么判断一个object是否是数组(array)？
+###### 7. How to judge whether an object is an array?
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-##### 方法1
-使用 Object.prototype.toString 来判断是否是数组
+##### Method 1
+Use `Object.prototype.toString` to determine whether it is an array
 
 ```javascript
 function isArray(obj){
     return Object.prototype.toString.call( obj ) === '[object Array]';
 }
 ```
-这里使用call来使 toString 中 this 指向 obj。进而完成判断
+Here we use `call` to point `this` in `toString` to `obj`. Then complete the judgment
 
-##### 方法二
-使用 原型链 来完成判断
+##### Method 2
+Use prototype chain to complete judgment
 
 ```javascript
 function isArray(obj){
     return obj.__proto__ === Array.prototype;
 }
 ```
-基本思想是利用 实例如果是某个构造函数构造出来的那么 它的 __proto__是指向构造函数的 prototype属性。
+The basic idea is that if an instance is constructed by a constructor, its ` __proto__` is  pointing to the prototype property of constructor.
 
-##### 方法3
-利用JQuery
+##### Method 3
+Using JQuery
 
 ```javascript
 function isArray(obj){
     return $.isArray(obj)
 }
 ```
-JQuery isArray 的实现其实就是方法1
+The implementation of jQuery isarray is actually method 1
 
 </p>
 </details>
@@ -293,7 +281,7 @@ console.log(output);
 <p>
 
 #### Answer: 0
-delete 操作符是将object的属性删去的操作。但是这里的 x 是并不是对象的属性， delete 操作符并不能作用。
+The delete operator is the operation to delete the attribute of an object. But x here is not an object property, and the delete operator does not work.
 
 </p>
 </details>
@@ -317,7 +305,7 @@ console.log(output);
 
 #### Answer: 1
 
-delete 操作符是将object的属性删去的操作。但是这里的 x 是并不是对象的属性， delete 操作符并不能作用。
+The delete operator is the operation to delete the attribute of an object. But x here is not an object property, and the delete operator does not work.
 
 </p>
 </details>
@@ -341,7 +329,7 @@ console.log(output);
 
 #### Answer: undefined
 
-x虽然是全局变量，但是它是一个object。delete作用在x.foo上，成功的将x.foo删去。所以返回undefined
+Although x is a global variable, it is an object. Delete works on x.foo and successfully deletes x.foo. So return undefined
 
 </p>
 </details>
@@ -364,7 +352,7 @@ console.log(emp1.company);
 
 #### Answer: xyz
 
-这里的 emp1 通过 prototype 继承了 Employee的 company。emp1自己并没有company属性。所以delete操作符的作用是无效的。
+Emp1 here inherits the company of employee through prototype. Emp1 has no company attribute of its own. So the delete operator has no effect.
 
 </p>
 </details>
