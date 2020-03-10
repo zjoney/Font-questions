@@ -617,27 +617,45 @@ var salary = "1000$";
 
 ---
 
-###### 19. What's the output?
+###### 19. 什么是 instanceof 操作符？下面代码输出什么？
 
 ```javascript
-function getAge(...args) {
-  console.log(typeof args);
+function foo(){
+  return foo;
 }
 
-getAge(21);
+console.log(new foo() instanceof foo);
 ```
-
-- A: `"number"`
-- B: `"array"`
-- C: `"object"`
-- D: `"NaN"`
 
 <details><summary><b>Answer</b></summary>
 <p>
+instanceof操作符用来判断是否当前对象是特定类的对象。
 
-#### Answer: C
+如
 
-The rest parameter (`...args`.) lets us "collect" all remaining arguments into an array. An array is an object, so `typeof args` returns `"object"`
+```javascript
+function Animal(){
+    //或者不写return语句
+    return this;
+}
+var dog = new Animal();
+dog instanceof Animal // Output : true
+```
+但是，这里的foo定义为
+```javascript
+
+function foo(){
+  return foo;
+}
+```
+所以
+```javascript
+
+// here bar is pointer to function foo(){return foo}.
+var bar = new foo();
+```
+
+所以 new foo() instanceof foo 返回 false
 
 </p>
 </details>
