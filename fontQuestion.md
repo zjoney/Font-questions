@@ -13,6 +13,7 @@
 <p>
 
 JavaScript 未声明变量直接使用会抛出异常：var name is not defined，如果没有处理异常，代码就停止运行了。但是，使用typeof undeclared_variable并不会产生异常，会直接返回 undefined。
+If JavaScript does not declare variables to be used directly, an exception will be thrown: <code>Var name is not defined</code>. If the exception is not handled, the code will stop running. However, the use of <code>typeof undeclared_variable</code> does not cause an exception, and it will directly return undefined.
 ```javascript
 var x; // 声明 x
 console.log(x); //output: undefined
