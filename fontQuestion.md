@@ -174,37 +174,37 @@ globalVar = abc
 
 ---
 
-###### 5. Which one is true?
+###### 5. 写一个mul函数，使用方法如下
 
 ```javascript
-const bird = {
-  size: "small"
-};
-
-const mouse = {
-  name: "Mickey",
-  small: true
-};
+console.log(mul(2)(3)(4)); // output : 24
+console.log(mul(4)(3)(4)); // output : 48
 ```
-
-- A: `mouse.bird.size` is not valid
-- B: `mouse[bird.size]` is not valid
-- C: `mouse[bird["size"]]` is not valid
-- D: All of them are valid
 
 <details><summary><b>Answer</b></summary>
 <p>
+```javascript
+function mul (x) {
+    return function (y) { // anonymous function
+        return function (z) { // anonymous function
+            return x * y * z;
+        };
+    };
+}
+```
+简单说明下：mul 返回一个匿名函数，运行这个匿名函数又返回一个匿名函数，最里面的匿名函数可以访问 x,y,z 进而算出乘积返回即可。
 
-#### Answer: A
+对于JavaScript中的函数一般可以考察如下知识点：
 
-In JavaScript, all object keys are strings (unless it's a Symbol). Even though we might not _type_ them as strings, they are always converted into strings under the hood.
+函数是一等公民
 
-JavaScript interprets (or unboxes) statements. When we use bracket notation, it sees the first opening bracket `[` and keeps going until it finds the closing bracket `]`. Only then, it will evaluate the statement.
+函数可以有属性，并且能连接到它的构造方法
 
-`mouse[bird.size]`: First it evaluates `bird.size`, which is `"small"`. `mouse["small"]` returns `true`
+函数可以像一个变量一样存在内存中
 
-However, with dot notation, this doesn't happen. `mouse` does not have a key called `bird`, which means that `mouse.bird` is `undefined`. Then, we ask for the `size` using dot notation: `mouse.bird.size`. Since `mouse.bird` is `undefined`, we're actually asking `undefined.size`. This isn't valid, and will throw an error similar to `Cannot read property "size" of undefined`.
+函数可以当做参数传给其他函数
 
+函数可以返回其他函数
 </p>
 </details>
 
