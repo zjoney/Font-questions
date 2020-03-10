@@ -327,26 +327,21 @@ delete 操作符是将object的属性删去的操作。但是这里的 x 是并�
 ###### 10. What happens when we do this?
 
 ```javascript
-function bark() {
-  console.log("Woof!");
-}
+var x = { foo : 1};
+var output = (function(){
+    delete x.foo;
+    return x.foo;
+})();
 
-bark.animal = "dog";
+console.log(output);
 ```
-
-- A: Nothing, this is totally fine!
-- B: `SyntaxError`. You cannot add properties to a function this way.
-- C: `"Woof"` gets logged.
-- D: `ReferenceError`
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: A
+#### Answer: undefined
 
-This is possible in JavaScript, because functions are objects! (Everything besides primitive types are objects)
-
-A function is a special type of object. The code you write yourself isn't the actual function. The function is an object with properties. This property is invocable.
+x虽然是全局变量，但是它是一个object。delete作用在x.foo上，成功的将x.foo删去。所以返回undefined
 
 </p>
 </details>
