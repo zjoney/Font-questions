@@ -77,36 +77,44 @@ console.log(k); // output 1function
 
 ---
 
-###### 3. What's the output?
-
-```javascript
-const shape = {
-  radius: 10,
-  diameter() {
-    return this.radius * 2;
-  },
-  perimeter: () => 2 * Math.PI * this.radius
-};
-
-console.log(shape.diameter());
-console.log(shape.perimeter());
-```
-
-- A: `20` and `62.83185307179586`
-- B: `20` and `NaN`
-- C: `20` and `63`
-- D: `NaN` and `63`
+###### 3. What are the disadvantages of creating a real private method in JavaScript?
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: B
+每一个对象都会创建一个private方法的方法，这样很耗费内存
 
-Note that the value of `diameter` is a regular function, whereas the value of `perimeter` is an arrow function.
+观察下面代码
 
-With arrow functions, the `this` keyword refers to its current surrounding scope, unlike regular functions! This means that when we call `perimeter`, it doesn't refer to the shape object, but to its surrounding scope (window for example).
+```javascript
+var Employee = function (name, company, salary) {
+    this.name = name || "";
+    this.company = company || "";
+    this.salary = salary || 5000;
 
-There is no value `radius` on that object, which returns `undefined`.
+    // Private method
+    var increaseSalary = function () {
+        this.salary = this.salary + 1000;
+    };
+
+    // Public method
+    this.dispalyIncreasedSalary = function() {
+        increaseSlary();
+        console.log(this.salary);
+    };
+};
+
+// Create Employee class object
+var emp1 = new Employee("John","Pluto",3000);
+// Create Employee class object
+var emp2 = new Employee("Merry","Pluto",2000);
+// Create Employee class object
+var emp3 = new Employee("Ren","Pluto",2500);
+```
+
+在这里 emp1,emp2,emp3都有一个increaseSalary私有方法的副本。
+
+所以我们除非必要，非常不推荐使用私有方法。
 
 </p>
 </details>
