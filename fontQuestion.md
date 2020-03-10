@@ -238,33 +238,40 @@ var arrayList =  ['a','b','c','d','e','f'];
 
 ---
 
-###### 7. What's the output?
-
-```javascript
-let a = 3;
-let b = new Number(3);
-let c = 3;
-
-console.log(a == b);
-console.log(a === b);
-console.log(b === c);
-```
-
-- A: `true` `false` `true`
-- B: `false` `false` `true`
-- C: `true` `false` `false`
-- D: `false` `true` `true`
+###### 7. 怎么判断一个object是否是数组(array)？
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: C
+##### 方法1
+使用 Object.prototype.toString 来判断是否是数组
 
-`new Number()` is a built-in function constructor. Although it looks like a number, it's not really a number: it has a bunch of extra features and is an object.
+```javascript
+function isArray(obj){
+    return Object.prototype.toString.call( obj ) === '[object Array]';
+}
+```
+这里使用call来使 toString 中 this 指向 obj。进而完成判断
 
-When we use the `==` operator, it only checks whether it has the same _value_. They both have the value of `3`, so it returns `true`.
+##### 方法二
+使用 原型链 来完成判断
 
-However, when we use the `===` operator, both value _and_ type should be the same. It's not: `new Number()` is not a number, it's an **object**. Both return `false.`
+```javascript
+function isArray(obj){
+    return obj.__proto__ === Array.prototype;
+}
+```
+基本思想是利用 实例如果是某个构造函数构造出来的那么 它的 __proto__是指向构造函数的 prototype属性。
+
+##### 方法3
+利用JQuery
+
+```javascript
+function isArray(obj){
+    return $.isArray(obj)
+}
+```
+JQuery isArray 的实现其实就是方法1
 
 </p>
 </details>
