@@ -351,38 +351,20 @@ x虽然是全局变量，但是它是一个object。delete作用在x.foo上，�
 ###### 11. What's the output?
 
 ```javascript
-function Person(firstName, lastName) {
-  this.firstName = firstName;
-  this.lastName = lastName;
+var Employee = {
+    company: 'xyz'
 }
-
-const member = new Person("Lydia", "Hallie");
-Person.getFullName = function() {
-  return `${this.firstName} ${this.lastName}`;
-};
-
-console.log(member.getFullName());
+var emp1 = Object.create(Employee);
+delete emp1.company
+console.log(emp1.company);
 ```
-
-- A: `TypeError`
-- B: `SyntaxError`
-- C: `Lydia Hallie`
-- D: `undefined` `undefined`
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: A
+#### Answer: xyz
 
-You can't add properties to a constructor like you can with regular objects. If you want to add a feature to all objects at once, you have to use the prototype instead. So in this case,
-
-```js
-Person.prototype.getFullName = function() {
-  return `${this.firstName} ${this.lastName}`;
-};
-```
-
-would have made `member.getFullName()` work. Why is this beneficial? Say that we added this method to the constructor itself. Maybe not every `Person` instance needed this method. This would waste a lot of memory space, since they would still have that property, which takes of memory space for each instance. Instead, if we only add it to the prototype, we just have it at one spot in memory, yet they all have access to it!
+这里的 emp1 通过 prototype 继承了 Employee的 company。emp1自己并没有company属性。所以delete操作符的作用是无效的。
 
 </p>
 </details>
