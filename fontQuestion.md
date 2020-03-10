@@ -1,8 +1,5 @@
 <div align="center">
   <h1>20 required JavaScript interview questions</h1>
-
-  ---
-  Feel free to reach out to me! 😊 
   </div>
 
 ---
@@ -13,13 +10,14 @@
 <p>
 
 If JavaScript does not declare variables to be used directly, an exception will be thrown: `var name is not defined`. If the exception is not handled, the code will stop running. However, the use of `typeof undeclared_variable` does not cause an exception, and it will directly return undefined.
+
 ```javascript
-var x; // 声明 x
+var x; // Statement x
 console.log(x); //output: undefined
 
 console.log(typeof y); //output: undefined
 
-console.log(z);  // 抛出异常: ReferenceError: z is not defined
+console.log(z);  // ReferenceError: z is not defined
 ```
 
 </p>
@@ -177,6 +175,7 @@ console.log(mul(4)(3)(4)); // output : 48
 
 <details><summary><b>Answer</b></summary>
 <p>
+
 ```javascript
 function mul (x) {
     return function (y) { // anonymous function
@@ -359,7 +358,7 @@ Emp1 here inherits the company of employee through prototype. Emp1 has no compan
 
 ---
 
-###### 12. 什么是 undefined x 1 ？
+###### 12. What is undefined x 1?
 
 <details><summary><b>Answer</b></summary>
 <p>
@@ -371,8 +370,6 @@ var trees = ["redwood","bay","cedar","oak","maple"];
 delete trees[3];
 console.log(trees);
 ```
-当我们使用 delete 操作符删除一个数组中的元素，这个元素的位置就会变成一个占位符。打印出来就是undefined x 1。注意如果我们使用trees[3] === 'undefined × 1'返回的是 false。因为它仅仅是一种打印表示，并不是值变为undefined x 1。
-
 When we use the `delete` operator to delete an element in an array, the position of the element becomes a placeholder. Printed out is `undefined x 1`. Note that if we use `trees [3] = = 'undefined × 1'`, we return `false`. Because it's just a printed representation, it's not a value that changes to` undefined x 1`.
 
 </p>
@@ -413,6 +410,7 @@ console.log(bar + false);
 
 <details><summary><b>Answer</b></summary>
 <p>
+
 ```javascript
 1
 truexyz
@@ -544,8 +542,8 @@ function bar(){
 Why? Why is foo printed as undefined and bar printed as a function?
 When JavaScript executes, it promotes variables.
 So the JavaScript engine in the above code executes in this order when actually executing.
-```javascript
 
+```javascript
 // The defined position of foo bar is raised
 function bar(){
     // Some code
@@ -582,11 +580,14 @@ var salary = "1000$";
 
 <details><summary><b>Answer</b></summary>
 <p>
+
 ```javascript
 Original salary was undefined
 My New Salary 5000$
 ```
+
 This question also examines variable promotion. Equivalent to the following code
+
 ```javascript
 var salary = "1000$";
 
@@ -642,7 +643,7 @@ so
 var bar = new foo();
 ```
 
-调用foo的new foo（）instanceof foo返回 false
+Call Foo's new foo() instanceof Foo and return false
 
 </p>
 </details>
