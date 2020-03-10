@@ -517,29 +517,62 @@ var foo = function bar(){
 ###### 17. 两种函数声明有什么区别？
 
 ```javascript
-function getPersonInfo(one, two, three) {
-  console.log(one);
-  console.log(two);
-  console.log(three);
-}
-
-const person = "Lydia";
-const age = 21;
-
-getPersonInfo`${person} is ${age} years old`;
+var foo = function(){
+    // Some code
+};
+function bar(){
+    // Some code
+};
 ```
-
-- A: `"Lydia"` `21` `["", " is ", " years old"]`
-- B: `["", " is ", " years old"]` `"Lydia"` `21`
-- C: `"Lydia"` `["", " is ", " years old"]` `21`
 
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: B
+foo的定义是在运行时。想系统说明这个问题，我们要引入变量提升的这一概念。
 
-If you use tagged template literals, the value of the first argument is always an array of the string values. The remaining arguments get the values of the passed expressions!
+我们可以运行下如下代码看看结果。
 
+```javascript
+console.log(foo)
+console.log(bar)
+
+var foo = function(){
+    // Some code
+};
+function bar(){
+    // Some code
+};
+```
+输出为
+
+```javascript
+undefined
+function bar(){
+    // Some code
+};
+```
+为什么那？为什么 foo 打印出来是 undefined，而 bar打印出来却是函数？
+
+JavaScript在执行时，会将变量提升。
+
+所以上面代码JavaScript 引擎在实际执行时按这个顺序执行。
+```javascript
+
+// foo bar的定义位置被提升
+function bar(){
+    // Some code
+};
+var foo;
+
+console.log(foo)
+console.log(bar)
+
+foo = function(){
+    // Some code
+};
+```
+
+原代码的输出合理解释了。
 </p>
 </details>
 
